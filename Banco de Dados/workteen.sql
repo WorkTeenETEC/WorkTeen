@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 01, 2025 at 02:37 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1
+-- Tempo de geração: 08-Abr-2025 às 15:51
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,77 +18,77 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `workteen`
+-- Banco de dados: `workteen`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admins`
+-- Estrutura da tabela `admins`
 --
 
 CREATE TABLE `admins` (
-  `admId` int NOT NULL,
+  `admId` int(11) NOT NULL,
   `admNome` varchar(150) DEFAULT NULL,
   `admEmail` varchar(150) DEFAULT NULL,
   `admSenha` varchar(150) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alunos`
+-- Estrutura da tabela `alunos`
 --
 
 CREATE TABLE `alunos` (
-  `aluId` int NOT NULL,
-  `aluLoginId` int DEFAULT NULL,
+  `aluId` int(11) NOT NULL,
+  `aluLoginId` int(11) DEFAULT NULL,
   `aluCpf` varchar(15) NOT NULL,
   `aluNome` varchar(150) NOT NULL,
-  `aluEmail` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `aluDtNascimento` date NOT NULL,
+  `aluGenero` enum('masculino','feminino','prefiro não dizer') NOT NULL,
   `aluTelefone` varchar(14) NOT NULL,
   `aluEndereco` varchar(150) NOT NULL,
   `aluCidade` varchar(150) NOT NULL,
   `aluEscola` varchar(150) DEFAULT NULL,
   `aluSerie` varchar(10) DEFAULT NULL,
-  `aluAtivo` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `aluAtivo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `candidatos`
+-- Estrutura da tabela `candidatos`
 --
 
 CREATE TABLE `candidatos` (
-  `canId` int NOT NULL,
-  `canAluId` int DEFAULT NULL,
-  `canCurId` int DEFAULT NULL,
-  `canVagId` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `canId` int(11) NOT NULL,
+  `canAluId` int(11) DEFAULT NULL,
+  `canCurId` int(11) DEFAULT NULL,
+  `canVagId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `curriculos`
+-- Estrutura da tabela `curriculos`
 --
 
 CREATE TABLE `curriculos` (
-  `curId` int NOT NULL,
-  `curAlunoId` int DEFAULT NULL,
+  `curId` int(11) NOT NULL,
+  `curAlunoId` int(11) DEFAULT NULL,
   `curCaminho` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empresas`
+-- Estrutura da tabela `empresas`
 --
 
 CREATE TABLE `empresas` (
-  `empId` int NOT NULL,
-  `empLoginId` int DEFAULT NULL,
+  `empId` int(11) NOT NULL,
+  `empLoginId` int(11) DEFAULT NULL,
   `empNome` varchar(150) NOT NULL,
   `empCnpj` varchar(20) NOT NULL,
   `empEmail` varchar(150) NOT NULL,
@@ -97,27 +97,27 @@ CREATE TABLE `empresas` (
   `empCidade` varchar(150) NOT NULL,
   `empEstado` char(2) NOT NULL,
   `empRamo` varchar(150) NOT NULL,
-  `empAtivo` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `empAtivo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loginaluno`
+-- Estrutura da tabela `loginaluno`
 --
 
 CREATE TABLE `loginaluno` (
-  `LogId` int NOT NULL,
-  `LogEmail` varchar(255) NOT NULL,
-  `LogSenha` varchar(255) NOT NULL,
-  `LogUsuario` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `logId` int(11) NOT NULL,
+  `logEmail` varchar(255) NOT NULL,
+  `logSenha` varchar(255) NOT NULL,
+  `logUsuario` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loginaluno`
+-- Extraindo dados da tabela `loginaluno`
 --
 
-INSERT INTO `loginaluno` (`LogId`, `LogEmail`, `LogSenha`, `LogUsuario`) VALUES
+INSERT INTO `loginaluno` (`logId`, `logEmail`, `logSenha`, `logUsuario`) VALUES
 (5, 'suportwoorkteen@gmail.com', '$2y$10$tMWtRenVScDBLcqG7oUCtOit10utcdQJFnYEtws6IEqV9p/NV3GkK', 'Daniel Zanata'),
 (6, 'aodaodsO@gmail.com', '$2y$10$0VoD5bnVQIw8xSCJ8YMSQuMYFo1fYqmkS722aBeglK8Wyca3Lj44q', 'Gordao da xj'),
 (7, 'pedro.freitas90@etec.sp.gov.br', '$2y$10$IQlKYQVT.HIzkqWQkl3OpOP5asXWkMfWlPQJqTQ9Iieq..ZQc3VWi', 'Pedro Freitas'),
@@ -126,48 +126,48 @@ INSERT INTO `loginaluno` (`LogId`, `LogEmail`, `LogSenha`, `LogUsuario`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loginempresa`
+-- Estrutura da tabela `loginempresa`
 --
 
 CREATE TABLE `loginempresa` (
-  `logeId` int NOT NULL,
-  `logeCnpj` varchar(15) NOT NULL,
-  `logeSenha` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `logeNomeEmpresa` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `logeid` int(11) NOT NULL,
+  `logeCnpj` varchar(20) NOT NULL,
+  `logesenha` varchar(255) NOT NULL,
+  `logenomeempresa` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vagas`
+-- Estrutura da tabela `vagas`
 --
 
 CREATE TABLE `vagas` (
-  `vagId` int NOT NULL,
-  `vagEmpId` int DEFAULT NULL,
+  `vagId` int(11) NOT NULL,
+  `vagEmpId` int(11) DEFAULT NULL,
   `vagDtInicio` date NOT NULL,
   `vagDtTermino` date NOT NULL,
   `vagTitulo` varchar(150) NOT NULL,
   `vagDesc` varchar(500) NOT NULL,
   `vagRequisitos` varchar(500) DEFAULT NULL,
   `vagModalidade` enum('presencial','remoto','hibrido') DEFAULT NULL,
-  `vagCargaHoraria` int DEFAULT NULL,
+  `vagCargaHoraria` int(11) DEFAULT NULL,
   `vagSalario` varchar(150) DEFAULT NULL,
-  `vagAtivo` tinyint(1) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `vagAtivo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `admins`
+-- Índices para tabela `admins`
 --
 ALTER TABLE `admins`
   ADD PRIMARY KEY (`admId`);
 
 --
--- Indexes for table `alunos`
+-- Índices para tabela `alunos`
 --
 ALTER TABLE `alunos`
   ADD PRIMARY KEY (`aluId`),
@@ -175,7 +175,7 @@ ALTER TABLE `alunos`
   ADD KEY `aluLoginId` (`aluLoginId`);
 
 --
--- Indexes for table `candidatos`
+-- Índices para tabela `candidatos`
 --
 ALTER TABLE `candidatos`
   ADD PRIMARY KEY (`canId`),
@@ -184,14 +184,14 @@ ALTER TABLE `candidatos`
   ADD KEY `canVagId` (`canVagId`);
 
 --
--- Indexes for table `curriculos`
+-- Índices para tabela `curriculos`
 --
 ALTER TABLE `curriculos`
   ADD PRIMARY KEY (`curId`),
   ADD KEY `curAlunoId` (`curAlunoId`);
 
 --
--- Indexes for table `empresas`
+-- Índices para tabela `empresas`
 --
 ALTER TABLE `empresas`
   ADD PRIMARY KEY (`empId`),
@@ -199,89 +199,89 @@ ALTER TABLE `empresas`
   ADD KEY `empLoginId` (`empLoginId`);
 
 --
--- Indexes for table `loginaluno`
+-- Índices para tabela `loginaluno`
 --
 ALTER TABLE `loginaluno`
-  ADD PRIMARY KEY (`LogId`);
+  ADD PRIMARY KEY (`logId`);
 
 --
--- Indexes for table `loginempresa`
+-- Índices para tabela `loginempresa`
 --
 ALTER TABLE `loginempresa`
-  ADD PRIMARY KEY (`logeId`),
+  ADD PRIMARY KEY (`logeid`),
   ADD UNIQUE KEY `logeCnpj` (`logeCnpj`);
 
 --
--- Indexes for table `vagas`
+-- Índices para tabela `vagas`
 --
 ALTER TABLE `vagas`
   ADD PRIMARY KEY (`vagId`),
   ADD KEY `vagEmpId` (`vagEmpId`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `admins`
+-- AUTO_INCREMENT de tabela `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `admId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `admId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `alunos`
+-- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `aluId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `aluId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `candidatos`
+-- AUTO_INCREMENT de tabela `candidatos`
 --
 ALTER TABLE `candidatos`
-  MODIFY `canId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `canId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `curriculos`
+-- AUTO_INCREMENT de tabela `curriculos`
 --
 ALTER TABLE `curriculos`
-  MODIFY `curId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `curId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `empresas`
+-- AUTO_INCREMENT de tabela `empresas`
 --
 ALTER TABLE `empresas`
-  MODIFY `empId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `empId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `loginaluno`
+-- AUTO_INCREMENT de tabela `loginaluno`
 --
 ALTER TABLE `loginaluno`
-  MODIFY `LogId` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `logId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `loginempresa`
+-- AUTO_INCREMENT de tabela `loginempresa`
 --
 ALTER TABLE `loginempresa`
-  MODIFY `logeId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `logeid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `vagas`
+-- AUTO_INCREMENT de tabela `vagas`
 --
 ALTER TABLE `vagas`
-  MODIFY `vagId` int NOT NULL AUTO_INCREMENT;
+  MODIFY `vagId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restrições para despejos de tabelas
 --
 
 --
--- Constraints for table `alunos`
+-- Limitadores para a tabela `alunos`
 --
 ALTER TABLE `alunos`
-  ADD CONSTRAINT `alunos_ibfk_1` FOREIGN KEY (`aluLoginId`) REFERENCES `loginaluno` (`LogId`);
+  ADD CONSTRAINT `alunos_ibfk_1` FOREIGN KEY (`aluLoginId`) REFERENCES `loginaluno` (`logId`);
 
 --
--- Constraints for table `candidatos`
+-- Limitadores para a tabela `candidatos`
 --
 ALTER TABLE `candidatos`
   ADD CONSTRAINT `candidatos_ibfk_1` FOREIGN KEY (`canAluId`) REFERENCES `alunos` (`aluId`),
@@ -289,19 +289,19 @@ ALTER TABLE `candidatos`
   ADD CONSTRAINT `candidatos_ibfk_3` FOREIGN KEY (`canVagId`) REFERENCES `vagas` (`vagId`);
 
 --
--- Constraints for table `curriculos`
+-- Limitadores para a tabela `curriculos`
 --
 ALTER TABLE `curriculos`
   ADD CONSTRAINT `curriculos_ibfk_1` FOREIGN KEY (`curAlunoId`) REFERENCES `alunos` (`aluId`);
 
 --
--- Constraints for table `empresas`
+-- Limitadores para a tabela `empresas`
 --
 ALTER TABLE `empresas`
-  ADD CONSTRAINT `empresas_ibfk_1` FOREIGN KEY (`empLoginId`) REFERENCES `loginempresa` (`logeId`);
+  ADD CONSTRAINT `empresas_ibfk_1` FOREIGN KEY (`empLoginId`) REFERENCES `loginempresa` (`logeid`);
 
 --
--- Constraints for table `vagas`
+-- Limitadores para a tabela `vagas`
 --
 ALTER TABLE `vagas`
   ADD CONSTRAINT `vagas_ibfk_1` FOREIGN KEY (`vagEmpId`) REFERENCES `empresas` (`empId`);
